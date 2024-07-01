@@ -4,7 +4,7 @@ section .text
 	global ft_strlen
 
 	ft_strlen:
-		xor rax, rax
+		mov rax, 0
 		jmp _loop
 
 	_loop:

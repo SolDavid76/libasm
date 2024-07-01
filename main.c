@@ -6,7 +6,7 @@
 /*   By: djanusz <djanusz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 15:23:55 by djanusz           #+#    #+#             */
-/*   Updated: 2024/07/01 15:10:57 by djanusz          ###   ########.fr       */
+/*   Updated: 2024/07/01 20:53:13 by djanusz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ int main(int ac, char **av)
 	printf("ft_strcmp(\"%s\", \"%s\") = %d\n\n", av[1], av[2], ft_strcmp(av[1], av[2]));
 
 	/* ft_write */
-	fd = write(1, av[1], strlen(av[1]));
+	fd = write(-1, av[1], strlen(av[1]));
 	printf("\nwrite(1, \"%s\", strlen(av[1])) = %d (errno = %d)\n", av[1], fd, errno);
-	fd = ft_write(1, av[1], ft_strlen(av[1]));
+	fd = ft_write(-1, av[1], ft_strlen(av[1]));
 	printf("\nft_write(1, \"%s\", ft_strlen(av[1])) = %d (errno = %d)\n\n", av[1], fd, errno);
 
 	/* ft_read */

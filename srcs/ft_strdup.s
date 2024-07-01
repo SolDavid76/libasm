@@ -8,13 +8,12 @@ section .text
 	global ft_strdup
 
 	ft_strdup:
-		mov rax, 0
 		call ft_strlen
-		mov rbx, rdi
+		push rdi
+		add rdi, 1
 		mov rdi, rax
-		inc rdi
 		call malloc
 		mov rdi, rax
-		mov rsi, rbx
+		pop rsi
 		call ft_strcpy
 		ret

@@ -14,8 +14,8 @@ section .text
 
 	_error:
 		neg rax
-		mov rdx, rax
+		push rax
 		call __errno_location
-		mov [rax], rdx
+		pop QWORD [rax]
 		mov rax, -1
 		ret

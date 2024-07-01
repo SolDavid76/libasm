@@ -4,8 +4,7 @@ section .text
 	global ft_strcmp
 
 	ft_strcmp:
-		xor rax, rax
-		xor rcx, rcx
+		mov rcx, 0
 		jmp _loop
 
 	_loop:
