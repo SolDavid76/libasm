@@ -12,13 +12,13 @@ section .text
 		mov al, [rdi + rcx] ; al = rdi[rcx]
 		mov bl, [rsi + rcx] ; bl = rsi[rcx]
 		cmp al, 0           ; if (al == 0)
-		je _end
+		je _exit
 		cmp al, bl          ; if (al == bl)
-		jne _end
+		jne _exit
 		inc rcx             ; rcx++
 		jmp _loop
 
-	_end:
+	_exit:
 		sub al, bl
 		movsx rax, al
 		ret

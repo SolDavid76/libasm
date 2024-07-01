@@ -10,12 +10,12 @@ section .text
 
 	_loop:
 		cmp BYTE [rsi + rcx], 0 ; if (rsi[rcx] == 0)
-		je _end
 		mov al, [rsi + rcx]     ; al = rsi[rcx]
 		mov [rdi + rcx], al     ; rdi[rcx] = al
+		je _exit
 		inc rcx
 		jmp _loop
 
-	_end:
+	_exit:
 		mov rax, rdi
 		ret

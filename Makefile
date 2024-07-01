@@ -1,10 +1,12 @@
 SRCS_DIR	=	srcs/
 
-SRC			=	ft_read.s\
-				ft_strcmp.s\
+SRC			=	ft_strlen.s\
 				ft_strcpy.s\
-				ft_strlen.s\
+				ft_strcmp.s\
 				ft_write.s\
+				ft_read.s\
+				ft_strdup.s\
+
 
 SRCS 		=	$(addprefix $(SRCS_DIR), $(SRC))
 
@@ -51,7 +53,7 @@ clean		:
 					rm -rf $(OBJS_DIR)
 
 fclean		:	clean
-					rm -rf $(NAME)
+					rm -f $(NAME)
 					rm -f a.out
 
 re			:	fclean all

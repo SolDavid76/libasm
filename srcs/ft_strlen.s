@@ -9,9 +9,9 @@ section .text
 
 	_loop:
 		cmp BYTE [rdi + rax], 0 ; if (rdi[rax] == 0)
-		je _end
+		je _exit
 		inc rax                 ; rax++
 		jmp _loop
 
-	_end:
+	_exit:
 		ret
