@@ -6,7 +6,7 @@
 /*   By: djanusz <djanusz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 15:23:55 by djanusz           #+#    #+#             */
-/*   Updated: 2024/07/02 15:46:23 by djanusz          ###   ########.fr       */
+/*   Updated: 2024/07/02 18:53:01 by djanusz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,5 @@ int main(int ac, char **av)
 	// free(tmp);
 
 	/* ft_atoi_base */
-	printf("%d\n", ft_atoi_base("   \t\t", "0123456789"));
+	printf("%d\n", ft_atoi_base(av[1], av[2]));
 }
