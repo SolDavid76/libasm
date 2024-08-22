@@ -21,17 +21,100 @@ void buffer_reset(void)
 		g_buffer[i] = '\0';
 }
 
+t_list *_lstnew(void *content)
+{
+	t_list *res = malloc(sizeof(t_list));
+	res->data = content;
+	res->next = NULL;
+	return (res);
+}
+
+void ft_lstprint(t_list *lst)
+{
+	while (1)
+	{
+		if (lst == NULL)
+		{
+			printf("NULL\n");
+			return ;
+		}
+		else
+			printf("%s -> ", (char *)lst->data);
+		lst = lst->next;
+	}
+}
+
+void ft_lstptr(t_list *lst)
+{
+	while (1)
+	{
+		if (lst == NULL)
+		{
+			printf("NULL\n");
+			return ;
+		}
+		else
+			printf("%p (%s) -> ", (void *)lst->data, (char *)lst->data);
+		lst = lst->next;
+	}
+}
+
+void ft_free(void *ptr)
+{
+	printf("ft_free(%p(%s))\n", ptr, (char *)ptr);
+	free(ptr);
+}
+
+void _list_clear(t_list *lst)
+{
+	while (lst)
+	{
+		t_list *tmp = lst->next;
+		free(lst->data);
+		free(lst);
+		lst = tmp;
+	}
+}
+
+// void _list_sort(t_list **lst, int (*cmp)())
+// {
+// 	t_list *lst1 = (*lst);
+
+// 	while (lst1)
+// 	{
+// 		t_list *lst2 = lst1->next;
+// 		while (lst2)
+// 		{
+// 			if (cmp(lst1->data, lst2->data) > 0)
+// 			{
+// 				void *tmp = lst1->data;
+// 				lst1->data = lst2->data;
+// 				lst2->data = tmp;
+// 			}
+// 			lst2 = lst2->next;
+// 		}
+// 		lst1 = lst1->next;
+// 	}
+// }
+
+void _list_remove_if(t_list **lstBeigin, void *dataRef, int (*cmpFtn)(), void (*freeFtn)(void *))
+{
+	t_list *lst1 = *lstBeigin;
+
+	if (cmpFtn(lst1->data, dataRef) == 0)
+	{
+		*lstBeigin = lst1->next;
+		freeFtn(lst1->data);
+		free(lst1);
+		lst1 = *lstBeigin;
+	}
+}
 
 int main(int ac, char **av)
 {
-	if (ac != 3)
-	{
-		write(1, "./a.out hey hello\n", 18);
-		exit(1);
-	}
-
 	int fd = 0;
 	char *tmp = NULL;
+	t_list *lst = _lstnew(ft_strdup("42"));
 
 	/* ft_strlen */
 	// printf("strlen(\"%s\") = %ld\n", av[1], strlen(av[1]));
@@ -70,5 +153,32 @@ int main(int ac, char **av)
 	// free(tmp);
 
 	/* ft_atoi_base */
-	printf("%d\n", ft_atoi_base(av[1], av[2]));
+	// printf("ft_atoi_base(\"%s\", \"%s\") = %d\n", av[1], av[2], ft_atoi_base(av[1], av[2]));
+
+	/* ft_list_push_front */
+	// ft_lstprint(lst);
+	ft_list_push_front(&lst, ft_strdup("2"));
+	ft_list_push_front(&lst, ft_strdup("1"));
+	ft_list_push_front(&lst, ft_strdup("8"));
+	ft_list_push_front(&lst, ft_strdup("4"));
+	ft_list_push_front(&lst, ft_strdup("3"));
+	ft_list_push_front(&lst, ft_strdup("6"));
+	ft_list_push_front(&lst, ft_strdup("7"));
+	ft_list_push_front(&lst, ft_strdup("9"));
+	// ft_lstprint(lst);
+
+	/* ft_list_size */
+	// printf("ft_list_size(lst) = %d\n", ft_list_size(lst));
+
+	/* ft_list_sort */
+	// ft_list_sort(&lst, ft_strcmp);
+
+	/* ft_list_remove_if */
+	ft_lstprint(lst);
+	// ft_lstptr(lst);
+	ft_list_remove_if(&lst, "6", strcmp, free); //crash wen i try to free the freaking data
+	ft_lstprint(lst);
+	// ft_lstptr(lst);
+
+	_list_clear(lst);
 }

@@ -10,8 +10,8 @@ section .text
 	ft_strdup:
 		call ft_strlen
 		push rdi
-		add rdi, 1
 		mov rdi, rax
+		add rdi, 1
 		call malloc
 		mov rdi, rax
 		pop rsi

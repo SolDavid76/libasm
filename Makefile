@@ -7,6 +7,10 @@ SRC			=	ft_strlen.s\
 				ft_read.s\
 				ft_strdup.s\
 				ft_atoi_base.s\
+				ft_list_push_front.s\
+				ft_list_size.s\
+				ft_list_sort.s\
+				ft_list_remove_if.s\
 
 SRCS 		=	$(addprefix $(SRCS_DIR), $(SRC))
 
@@ -36,9 +40,17 @@ all			:	$(OBJS_DIR) $(NAME)
 
 bonus		:	$(NAME)
 
-test		:	$(NAME)
-					gcc main.c -L. -lasm -no-pie
-					./a.out oui ouii
+run			:	$(NAME)
+					gcc main.c -L. -lasm -no-pie -g
+					./a.out
+
+val			:	$(NAME)
+					gcc main.c -L. -lasm -no-pie -g
+					valgrind ./a.out
+
+gdb			:	$(NAME)
+					gcc main.c -L. -lasm -no-pie -g
+					gdb ./a.out
 
 $(NAME)		:	$(OBJS)
 					ar rc $(NAME) $(OBJS)

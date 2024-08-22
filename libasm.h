@@ -18,7 +18,6 @@
 #include <stdlib.h>
 #include <errno.h>
 
-
 /* Mandatory part */
 size_t	ft_strlen(const char *);
 char	*ft_strcpy(char *, const char *);
@@ -35,7 +34,8 @@ typedef struct s_list
 }	t_list;
 
 int		ft_atoi_base(char *, char *);
+t_list	*ft_lstnew(void *);
 void	ft_list_push_front(t_list **, void *);
 int		ft_list_size(t_list *);
-void	ft_list_sort(t_list **, int(*)());
-void	ft_list_remove_if(t_list **, void *, int(*)(), void (*)(void *));
+void	ft_list_sort(t_list **, int (*)());
+void	ft_list_remove_if(t_list **, void *, int (*)(), void (*)(void *));
